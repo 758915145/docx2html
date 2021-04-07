@@ -1,0 +1,14 @@
+{
+  "name": "docx",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "parcel index.html"
+  },
+  "dependencies": {
+    "docxtemplater": "^3.21.1",
+    "pizzip": "^3.0.6"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}

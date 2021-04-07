@@ -1,85 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>docX to (very basic) HTML</title>
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:site" content="@astronomyblog">
-	<meta name="twitter:url" property="og:url" content="https://slowe.github.io/docx2html/">
-	<meta name="twitter:title" property="og:title" content="docX to (very basic) HTML">
-	<meta name="twitter:description" property="og:description" content="Some javascript to cut down a docx file to the bare basic semantic HTML">
-	<meta name="keywords" content="html,javascript,docx">
-	<link rel="stylesheet" href="resources/style.css">
-	<script src="resources/stuquery.js"></script>
-	<script src="resources/jszip.min.js"></script>
-	<script src="resources/docx2html.js"></script>
-	<script>
-	var file;
-	
-	S(document).ready(function(){
-
-		function callback(input,html){
-			console.log(this,this.input,input);
-			S('#input').html(this.input);
-			S('#output').html(html);
-			S('#html').html(html);
-		}
-
-		function dropOver(evt){
-			evt.stopPropagation();
-			evt.preventDefault();
-			S(this).addClass('drop');
-		}
-		function dragOff(){ S('.drop').removeClass('drop'); }
-
-		file = new convertDocX({'onload':callback,'onselect':dragOff});
-
-		// Setup the dnd listeners.
-		var dropZone = document.getElementById('drop_zone');
-		dropZone.addEventListener('dragover', dropOver, false);
-		dropZone.addEventListener('dragout', dragOff, false);
-
-		document.getElementById('standard_files').addEventListener('change', function(evt){
-			return file.handleFileSelect(evt,'docx');
-		}, false);
-
-	});
-	</script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>docx</title>
 </head>
 <body>
-
-	<a href="https://github.com/slowe/docx2html" id="forkme_banner">Fork Me on GitHub</a>
-
-	<div id="content">
-
-		<h1>docX to (very basic) HTML</h1>
-		<p><strong>Updated: 16 February 2018</strong></p>
-		<p>Get an HTML version of a Word document. The docx file is processed in your browser (nothing is sent to a server). The end result will be <em>very</em> bare-bones HTML and it won't have styling. Tables may not be rendered correctly (check them manually). The result won't be perfect.</p>
-	
-		<div id="drop_zone" class="dropzone block">
-			<div class="helpertext">
-				Drop docx file here (or click to browse files)<br />
-				<input id="standard_files" class="fileselect" type="file" title="browse" name="files[]" multiple="multiple" accept=".docx">
-			</div>
-		</div>
-
-		<h2>Document XML</h2>
-		<textarea id="input"></textarea>
-
-		<h2>HTML output</h2>
-		<textarea id="output"></textarea>
-		
-		<h2>Rendered HTML output</h2>
-		<section id="html"></section>
-
-	</div>
-	<footer>
-		<div class="holder">
-		&copy; 2018 <a href="https://www.strudel.org.uk/">Stuart Lowe</a>
-		</div>
-	</footer>
-
+  <input type="file" id="input"/>
+  <div id="box"></div>
+  <script src="./index.js"></script>
 </body>
 </html>
-
